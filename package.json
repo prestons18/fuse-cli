@@ -16,6 +16,7 @@
   ],
   "license": "MIT",
   "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
     "@types/node": "^24.10.1",
     "typescript": "^5.9.3"
   },
@@ -24,6 +25,7 @@
     "@prestonarnold/log": "^1.0.2",
     "@prestonarnold/validate": "^2.3.0",
     "commander": "^14.0.2",
+    "fs-extra": "^11.3.2",
     "inquirer": "^12.11.1"
   }
 }
