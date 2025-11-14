@@ -1,0 +1,2 @@
+export const VALID_TEMPLATES = ['web', 'api', 'full'] as const;
+export type TemplateType = typeof VALID_TEMPLATES[number];
