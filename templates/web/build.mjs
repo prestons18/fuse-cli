@@ -1,4 +1,10 @@
 import { context, build } from "esbuild";
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const isWatch = process.argv.includes("--watch");
 const isProd =
@@ -6,7 +12,7 @@ const isProd =
     process.argv.includes("--prod");
 
 const options = {
-    entryPoints: ["src/main.tsx"],
+    entryPoints: ["src/index.tsx"],
     bundle: true,
     outdir: "dist",
     format: "esm",
@@ -17,12 +23,16 @@ const options = {
     chunkNames: "chunks/[name]-[hash]",
     platform: "browser",
 
-    jsx: "react",
+    jsx: "transform",
     jsxFactory: "h",
     jsxFragment: "null",
     jsxImportSource: "@prestonarnold/fuse",
 
-    logLevel: "info"
+    logLevel: "info",
+    
+    loader: {
+        ".css": "css"
+    }
 };
 
 if (isWatch) {
@@ -30,6 +40,16 @@ if (isWatch) {
     const ctx = await context(options);
 
     await ctx.watch();
+    copyStylesToDist();
+    
+    // Watch for CSS changes
+    fs.watch(path.join(__dirname, 'src', 'styles'), (eventType, filename) => {
+        if (filename && filename.endsWith('.css')) {
+            console.log(`CSS file ${filename} changed, copying to dist...`);
+            copyStylesToDist();
+        }
+    });
+    
     await ctx.serve({
         servedir: ".",
         port: 3000,
@@ -40,5 +60,26 @@ if (isWatch) {
 } else {
     // Production
     await build(options);
+    copyStylesToDist();
     console.log("Build complete");
+}
+
+async function copyStylesToDist() {
+    const srcDir = path.join(__dirname, 'src', 'styles');
+    const destDir = path.join(__dirname, 'dist', 'styles');
+    
+    if (!fs.existsSync(destDir)) {
+        fs.mkdirSync(destDir, { recursive: true });
+    }
+    
+    const files = fs.readdirSync(srcDir);
+    
+    for (const file of files) {
+        if (file.endsWith('.css')) {
+            const srcFile = path.join(srcDir, file);
+            const destFile = path.join(destDir, file);
+            fs.copyFileSync(srcFile, destFile);
+            console.log(`Copied ${file} to ${destDir}`);
+        }
+    }
 }

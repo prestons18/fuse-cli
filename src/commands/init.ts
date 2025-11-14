@@ -34,14 +34,16 @@ export const initCommand = new Command("init")
             ? path.resolve(process.cwd(), targetPathArg)
             : path.resolve(process.cwd(), answers.name);
 
-        await scaffoldProject({
+        const success = await scaffoldProject({
             template: answers.template,
             targetPath,
         });
 
-        logger.info(
-            colour.green(
-                `Project "${answers.name}" initialized at "${targetPath}" with template "${answers.template}"`
-            )
-        );
+        if (success) {
+            logger.info(
+                colour.green(
+                    `Project "${answers.name}" initialized at "${targetPath}" with template "${answers.template}"`
+                )
+            );
+        }
     });

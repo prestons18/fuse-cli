@@ -1,0 +1,119 @@
+.app {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.main-nav {
+  display: flex;
+  gap: 1rem;
+  padding: 0.5rem 0;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.nav-link {
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #0066cc;
+  font-weight: normal;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.nav-item {
+  display: inline-block;
+  position: relative;
+}
+
+.nav-link.active {
+  background-color: #e0e0e0;
+  color: #000;
+  font-weight: bold;
+  position: relative;
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 5px;
+  height: 5px;
+  background-color: #0066cc;
+  border-radius: 50%;
+}
+
+.nav-link:hover {
+  background-color: #f0f0f0;
+}
+
+.nav-button {
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: #f5f5f5;
+  cursor: pointer;
+}
+
+.nav-button:hover {
+  background-color: #e0e0e0;
+}
+
+.back-button {
+  margin-left: auto;
+}
+
+.forward-button {
+  margin-left: 0.5rem;
+}
+
+.router-view {
+  padding: 1rem;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}
+
+.current-route {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.route-path {
+  font-family: monospace;
+  background-color: #f5f5f5;
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  color: #333;
+}
+
+.route-component {
+  padding: 1rem;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.route-component.not-found {
+  background-color: #fff8f8;
+  border-left: 4px solid #ff6b6b;
+}
+
+footer {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.url-value {
+  font-family: monospace;
+  background-color: #f5f5f5;
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  color: #333;
+}
