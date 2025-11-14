@@ -1,0 +1,7 @@
+import { h } from "@prestonarnold/fuse";
+
+export function AboutPage() {
+    return (
+        <h1>About Page</h1>
+    )
+}

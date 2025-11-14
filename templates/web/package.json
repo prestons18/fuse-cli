@@ -1,0 +1,23 @@
+{
+  "name": "fuse-web-template",
+  "version": "0.0.0",
+  "description": "A starter template for Fuse",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "node build.mjs --watch",
+    "build": "cross-env NODE_ENV=production node build.mjs --prod",
+    "preview": "npx serve dist -p 3000",
+    "clean": "rimraf dist"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "esbuild": "latest",
+    "typescript": "latest",
+    "cross-env": "latest",
+    "rimraf": "latest"
+  },
+  "dependencies": {
+    "@prestonarnold/fuse": "0.1.1"
+  }
+}
