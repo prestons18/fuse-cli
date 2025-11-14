@@ -16,6 +16,14 @@
   ],
   "license": "MIT",
   "devDependencies": {
+    "@types/node": "^24.10.1",
     "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@prestonarnold/config": "^1.0.0",
+    "@prestonarnold/log": "^1.0.2",
+    "@prestonarnold/validate": "^2.3.0",
+    "commander": "^14.0.2",
+    "inquirer": "^12.11.1"
   }
 }
