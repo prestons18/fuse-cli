@@ -18,6 +18,6 @@
     "rimraf": "latest"
   },
   "dependencies": {
-    "@prestonarnold/fuse": "0.1.1"
+    "@prestonarnold/fuse": "0.1.2"
   }
 }
