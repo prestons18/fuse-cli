@@ -1,39 +1,11 @@
-import { createLink, h, Router } from "@prestonarnold/fuse";
+import { h, Router, createNavLink } from "@prestonarnold/fuse";
 import { HomePage } from "./pages/Home";
 import { AboutPage } from "./pages/About";
 import { NotFoundPage } from "./pages/NotFound";
 
 export const router = new Router();
 
-// NAVLINK WILL COME IN NEXT FUSE UPDATE
-interface NavLinkProps {
-    href: string;
-    className?: string;
-    children?: any;
-    [key: string]: any;
-}
-
-export function NavLink(props: NavLinkProps) {
-    const { href, className, children, ...rest } = props;
-    const baseLink = createLink(router);
-    
-    return (
-        <div className="nav-item">
-            {() => {
-                router.currentPath.value;
-                const isActive = router.match(href).value;
-                const linkClass = `${className || ''} ${isActive ? 'active' : ''}`.trim();
-                
-                return baseLink({
-                    ...rest,
-                    href,
-                    className: linkClass,
-                    children
-                });
-            }}
-        </div>
-    );
-}
+export const NavLink = createNavLink(router);
 
 const routes: Record<string, () => Node> = {
     "/": HomePage,
