@@ -50,10 +50,10 @@ async function copyTemplate(
     await ensureDir(targetPath);
 
     const isEmpty = await isDirEmpty(targetPath);
-    
+
     if (!isEmpty) {
       const shouldOverwrite = await confirmOverwrite(targetPath, force);
-      
+
       if (!shouldOverwrite) {
         logger.error(colour.red("Scaffolding aborted by user."));
         return {
@@ -74,7 +74,7 @@ async function copyTemplate(
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : "Unknown error";
     logger.error(colour.red(`Failed to copy template: ${errorMessage}`));
-    
+
     return {
       success: false,
       message: errorMessage,
@@ -91,13 +91,7 @@ export async function scaffoldProject(
 
   const result = await copyTemplate(template, targetPath, force);
 
-  if (result.success) {
-    logger.info(colour.green(`${result.message}`));
-    logger.info(colour.gray(`\nNext steps:`));
-    logger.info(colour.gray(`  cd ${path.basename(targetPath)}`));
-    logger.info(colour.gray(`  npm install`));
-    logger.info(colour.gray(`  npm run dev`));
-  } else {
+  if (!result.success) {
     logger.error(colour.red(`Scaffolding failed: ${result.message}`));
   }
 

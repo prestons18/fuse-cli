@@ -40,10 +40,9 @@ export const initCommand = new Command("init")
         });
 
         if (success) {
-            logger.info(
-                colour.green(
-                    `Project "${answers.name}" initialized at "${targetPath}" with template "${answers.template}"`
-                )
-            );
+            logger.info(colour.gray(`\nNext steps:`));
+            logger.info(colour.gray(`   cd ${targetPath}`));
+            logger.info(colour.gray(`   npm install`));
+            logger.info(colour.gray(`   npm run dev`));
         }
     });
