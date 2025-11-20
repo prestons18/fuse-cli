@@ -11,8 +11,6 @@ const __dirname = path.dirname(__filename);
 
 export const TEMPLATE_PATHS: Record<TemplateType, string> = {
   web: path.resolve(__dirname, "../../templates/web"),
-  api: path.resolve(__dirname, "../../templates/api"),
-  full: path.resolve(__dirname, "../../templates/full"),
 };
 
 interface ScaffoldOptions {
